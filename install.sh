@@ -45,9 +45,10 @@ if [ "$DOIT" = true ]; then
     pkg "$aux"
     chsh -s /bin/$aux $USERNAME
     touch ~/.zshrc
-    mkdir -p ~/.config && touch ~/.config/starship.toml
-    echo "eval "$(starship init zsh)"" >> ~/.zshrc
+    mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    echo "eval "$(starship init zsh)"" >> ~/.zshrc
+    echo "Please Restart your terminal!"
 fi
 break
 	    # optionally call a function or run some code here
