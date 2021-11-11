@@ -9,8 +9,9 @@ Automated installer for a starship.rs theme
 # Readme.md
 - **HOW TO INSTALL**
 1. Clone this repository using 
-`git code https://github.com/rayone121/minimal-shell-prompt.git `
+`git clone https://github.com/rayone121/minimal-shell-prompt.git `
 2. Cd into the minimal-shell-prompt using 
 `cd minimal-shell-prompt/`
 3. Run the install script
 `bash install.sh`
+
