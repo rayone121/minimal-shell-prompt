@@ -59,11 +59,11 @@ break
 if [ "$DOIT" = true ]; then
     aux=$option
     pkg "$aux"
-    chsh -s /bin/$aux $USERNAME
-    mkdir -p ~/config/fish/ && touch ~/config/fish/config.fish
+    chsh -s /usr/bin/$aux $USERNAME
+    mkdir -p ~/.config/fish/ && touch ~/.config/fish/config.fish
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    echo "starship init fish | source" >> ~/config/fish/config.fish
+    echo "starship init fish | source" >> ~/.config/fish/config.fish
     echo "Please Restart your terminal!"
 fi
 break
