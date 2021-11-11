@@ -51,15 +51,33 @@ if [ "$DOIT" = true ]; then
     echo "Please Restart your terminal!"
 fi
 break
-	    # optionally call a function or run some code here
             ;;
         "fish")
-            echo ""
-	    # optionally call a function or run some code here
+            askYesNo "Do you want to install $option on your system?" true
+            DOIT=$ANSWER
+
+if [ "$DOIT" = true ]; then
+    aux=$option
+    pkg "$aux"
+    chsh -s /bin/$aux $USERNAME
+    mkdir -p ~/config/fish/ && touch ~/config/fish/config.fish
+    mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    echo "starship init fish | source" >> ~/config/fish/config.fish
+    echo "Please Restart your terminal!"
+fi
+break
             ;;
         "bash")
-            echo ""
-	    # optionally call a function or run some code here
+        askYesNo "Do you want to install prompt theme on your system?" true
+            DOIT=$ANSWER
+if [ "$DOIT" = true ]; then
+    chsh -s /bin/$aux $USERNAME
+    mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml 
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    echo "eval "$(starship init bash)"" >> ~/.bashrc
+    echo "Please Restart your terminal!"
+fi            
 	    break
             ;;
 	   "Quit")
@@ -69,5 +87,3 @@ break
         *) echo "invalid option $REPLY";;
     esac
 done
-
-
