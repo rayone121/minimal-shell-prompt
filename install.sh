@@ -72,6 +72,7 @@ break
         askYesNo "Do you want to install prompt theme on your system?" true
             DOIT=$ANSWER
 if [ "$DOIT" = true ]; then
+    aux=$option
     chsh -s /bin/$aux $USERNAME
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml 
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
