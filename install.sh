@@ -47,7 +47,7 @@ if [ "$DOIT" = true ]; then
     touch ~/.zshrc
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    echo "eval "$(starship init zsh)"" >> ~/.zshrc
+    sed -i -e 'eval "$(starship init zsh)"' ~/.zshrc
     echo "Please Restart your terminal!"
 fi
 break
@@ -63,7 +63,7 @@ if [ "$DOIT" = true ]; then
     mkdir -p ~/.config/fish/ && touch ~/.config/fish/config.fish
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    echo "starship init fish | source" >> ~/.config/fish/config.fish
+    sed -i -e '$aeval "$(starship init fish | source)"' ~/.config/fish/config.fish
     echo "Please Restart your terminal!"
 fi
 break
@@ -76,7 +76,7 @@ if [ "$DOIT" = true ]; then
     chsh -s /bin/$aux $USERNAME
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml 
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    echo "eval "$(starship init bash)"" >> ~/.bashrc
+    sed -i -e '$aeval "$(starship init bash)"' ~/.bashrc
     echo "Please Restart your terminal!"
 fi            
 	    break
