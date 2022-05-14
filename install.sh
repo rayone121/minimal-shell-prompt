@@ -44,7 +44,7 @@ select option in "${shells[@]}"; do
 if [ "$DOIT" = true ]; then
     aux=$option
     pkg "$aux"
-    chsh -s /bin/$aux $USERNAME
+    usermod --shell /bin/$aux $USERNAME
     touch ~/.zshrc
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
@@ -60,7 +60,7 @@ break
 if [ "$DOIT" = true ]; then
     aux=$option
     pkg "$aux"
-    chsh -s /usr/bin/$aux $USERNAME
+    usermod --shell /usr/bin/$aux $USERNAME
     mkdir -p ~/.config/fish/ && touch ~/.config/fish/config.fish
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
@@ -74,7 +74,7 @@ break
             DOIT=$ANSWER
 if [ "$DOIT" = true ]; then
     aux=$option
-    chsh -s /bin/$aux $USERNAME
+    usermod --shell /bin/$aux $USERNAME
     mkdir -p ~/.config && cp -a user/starship.toml ~/.config/starship.toml 
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
     sed -i -e '$aeval "$(starship init bash)"' ~/.bashrc
